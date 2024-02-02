@@ -4,10 +4,10 @@ const cilindrosSchema = new mongoose.Schema({
     nombreGas: {type: String, required: true},
     descripcion: {type: String, required: true},
     carga: {type: String, required: true},
-    usuario: {
+    /*usuario: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'users', 
-    }
+    }*/
 
 },{timestamps: true})
 
