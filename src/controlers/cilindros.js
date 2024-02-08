@@ -1,5 +1,6 @@
 const modeloCilindros = require("../models/cilindros.js")
 
+
 const post = async(req, res)=>{
     try {
         let datos= await modeloCilindros.post(req.body)
@@ -15,4 +16,18 @@ const post = async(req, res)=>{
     }
 }
 
-module.exports = {post}
+const get = async(req, res)=>{
+    try{
+        let {_id} = req.body
+        if(!_id){
+            return res.status(401).json({mensaje :"Falta ingresar _id"})
+        }
+        cilindro = await modeloCilindros.get(_id)
+        return res.status(200).json({mensaje: `Cilindro encontrado`, cilindro})
+    }
+    catch(error){
+        return res.status(500).json({mensaje:"ocurrio un error"})
+    }
+}
+
+module.exports = {post, get}

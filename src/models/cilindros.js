@@ -4,10 +4,10 @@ const cilindrosSchema = new mongoose.Schema({
     nombreGas: {type: String, required: true},
     descripcion: {type: String, required: true},
     carga: {type: String, required: true},
-    /*usuario: {
+    usuario: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'users', 
-    }*/
+    }
 
 },{timestamps: true})
 
@@ -24,4 +24,15 @@ async function post(data) {
   }
 }
 
-module.exports={post}
+async function get(_id){
+  try{
+    console.log('hasta aca llegue')
+    let cilindro = await Cilindros.findOne({_id:_id}).populate('usuario');
+    return cilindro;
+
+}catch (error) {
+  throw (`Imposible retornar materia: ${error}`)
+}
+}
+
+module.exports={post, get}

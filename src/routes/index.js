@@ -4,6 +4,6 @@ const controlersCilindros = require('../controlers/cilindros')
 const controlersUsers = require('../controlers/users')
 
 router.post('/cilindro', controlersCilindros.post)
-router.post('/user', controlersUsers.post)
+router.get('/cilindro', controlersCilindros.get)
 
 module.exports= router
