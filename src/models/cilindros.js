@@ -12,7 +12,7 @@ const cilindrosSchema = new mongoose.Schema({
 },{timestamps: true})
 
 const Cilindros = mongoose.model('cilindros',cilindrosSchema);
-
+/*
 async function post(data) {
   try{
     const nuevoCilindro = new Cilindros(data)
@@ -23,8 +23,8 @@ async function post(data) {
     throw ('Imposible insertar Cilindro')
   }
 }
-
-async function get(_id){
+*/
+async function post(_id){
   try{
     console.log('hasta aca llegue')
     let cilindro = await Cilindros.findOne({_id:_id}).populate('usuario');
@@ -35,4 +35,4 @@ async function get(_id){
 }
 }
 
-module.exports={post, get}
+module.exports={post}
