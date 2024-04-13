@@ -4,6 +4,8 @@ const cilindrosSchema = new mongoose.Schema({
     nombreGas: {type: String, required: true},
     descripcion: {type: String, required: true},
     carga: {type: String, required: true},
+    num: {type: String, required: true},
+    urlImg:{type: String, required: true},
     usuario: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'users', 
@@ -12,8 +14,8 @@ const cilindrosSchema = new mongoose.Schema({
 },{timestamps: true})
 
 const Cilindros = mongoose.model('cilindros',cilindrosSchema);
-/*
-async function post(data) {
+
+async function agregar(data) {
   try{
     const nuevoCilindro = new Cilindros(data)
     nuevoCilindro.save(); 
@@ -23,11 +25,10 @@ async function post(data) {
     throw ('Imposible insertar Cilindro')
   }
 }
-*/
-async function post(_id){
+
+async function post(num){
   try{
-    console.log('hasta aca llegue')
-    let cilindro = await Cilindros.findOne({_id:_id}).populate('usuario');
+    let cilindro = await Cilindros.findOne({num:num}).populate('usuario');
     return cilindro;
 
 }catch (error) {
@@ -35,4 +36,4 @@ async function post(_id){
 }
 }
 
-module.exports={post}
+module.exports={post, agregar}

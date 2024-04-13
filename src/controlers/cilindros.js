@@ -1,13 +1,9 @@
 const modeloCilindros = require("../models/cilindros.js")
 
-/*
-const post = async(req, res)=>{
+
+const agregar = async(req, res)=>{
     try {
-        let datos= await modeloCilindros.post(req.body)
-        //if(datos.rol !== 'admin'){
-        //    throw 'Solo los admin pueden ingresar carreras'
-        //}
-        console.log(req.body)
+        let datos= await modeloCilindros.agregar(req.body)
         console.log(datos)
         return res.status(200).json({datos})
     }catch(error){
@@ -15,15 +11,15 @@ const post = async(req, res)=>{
        // next(error)
     }
 }
-*/
+
 
 const post = async(req, res)=>{
     try{
-        let {_id} = req.body
-        if(!_id){
-            return res.status(401).json({mensaje :"Falta ingresar _id"})
+        let {num} = req.body
+        if(!num){
+            return res.status(401).json({mensaje :"Falta ingresar num"})
         }
-        cilindro = await modeloCilindros.post(_id)
+        cilindro = await modeloCilindros.post(num)
         return res.status(200).json({mensaje: `Cilindro encontrado`, cilindro})
     }
     catch(error){
@@ -31,4 +27,4 @@ const post = async(req, res)=>{
     }
 }
 
-module.exports = {post}
+module.exports = {post, agregar}
