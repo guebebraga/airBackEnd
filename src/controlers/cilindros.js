@@ -12,7 +12,7 @@ const agregar = async(req, res)=>{
     }
 }
 
-
+/*
 const post = async(req, res)=>{
     try{
         let {num} = req.body
@@ -20,11 +20,31 @@ const post = async(req, res)=>{
             return res.status(401).json({mensaje :"Falta ingresar num"})
         }
         cilindro = await modeloCilindros.post(num)
-        return res.status(200).json({mensaje: `Cilindro encontrado`, cilindro})
+
+        return res.status(200).json({mensaje: `Cilindro encontrado`, cilindro})  
     }
     catch(error){
         return res.status(500).json({mensaje:"ocurrio un error"})
     }
 }
+*/
+const post = async (req, res) => {
+    try {
+        let { num } = req.body
+        if (!num) {
+            return res.status(401).json({ mensaje: "Falta ingresar num" })
+        }
+        const cilindro = await modeloCilindros.post(num)
+
+        if (!cilindro) {
+            return res.status(404).json({ mensaje: "No se encontró balón" })
+        }
+
+        return res.status(200).json({ mensaje: `Cilindro encontrado`, cilindro })
+    } catch (error) {
+        return res.status(500).json({ mensaje: "Ocurrió un error" })
+    }
+}
+
 
 module.exports = {post, agregar}

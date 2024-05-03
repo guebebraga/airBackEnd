@@ -5,7 +5,6 @@ const cilindrosSchema = new mongoose.Schema({
     descripcion: {type: String, required: true},
     carga: {type: String, required: true},
     num: {type: String, required: true},
-    urlImg:{type: String, required: true},
     usuario: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'users', 
@@ -28,11 +27,11 @@ async function agregar(data) {
 
 async function post(num){
   try{
-    let cilindro = await Cilindros.findOne({num:num}).populate('usuario');
+    let cilindro = await Cilindros.findOne({num:num})//.populate('usuario');
     return cilindro;
 
 }catch (error) {
-  throw (`Imposible retornar materia: ${error}`)
+  throw (`Imposible retornar cilindro: ${error}`)
 }
 }
 
